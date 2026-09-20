@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login - SmartCampus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">SmartCampus</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/student-register">Register</a>
+        <a href="/admin-login">Admin Login</a>
+    </div>
+
+</nav>
+
+
+<div class="form-container">
+
+    <div class="form-card">
+
+        <div class="login-icon">🎓</div>
+
+        <h1>Student Login</h1>
+
+        <p>Login to report and track campus issues</p>
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <button type="submit" class="form-btn">
+                Login
+            </button>
+
+        </form>
+<div class="back-link">
+    <a href="/">← Back to Home</a>
+</div>
+
+        <p class="bottom-text">
+
+            Don't have an account?
+
+            <a href="/student-register">
+                Create Account
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
