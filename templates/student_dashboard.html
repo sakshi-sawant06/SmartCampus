@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - SmartCampus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        SmartCampus
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            ← Home
+        </a>
+
+        <a href="/report">
+            Report Issue
+        </a>
+
+        <a href="/my-reports">
+            Track Issues
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- DASHBOARD -->
+
+<div class="dashboard-container">
+
+    <!-- WELCOME -->
+
+    <div class="dashboard-header">
+
+        <p class="dashboard-small-title">
+            STUDENT DASHBOARD
+        </p>
+
+        <h1>
+            Welcome, {{ name }} 👋
+        </h1>
+
+        <p>
+            Report campus problems and track their resolution
+            from one place.
+        </p>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="dashboard-section">
+
+        <h2>
+            Quick Actions
+        </h2>
+
+
+        <div class="dashboard-cards">
+
+
+            <!-- REPORT ISSUE -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Report an Issue
+                </h3>
+
+                <p>
+                    Report problems related to classrooms,
+                    laboratories, electricity, water,
+                    cleanliness and other campus facilities.
+                </p>
+
+                <a href="/report"
+                   class="dashboard-btn">
+                    Report Issue →
+                </a>
+
+            </div>
+
+
+            <!-- TRACK ISSUES -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Track My Issues
+                </h3>
+
+                <p>
+                    Check the status of your reported issues
+                    and track their progress until resolution.
+                </p>
+
+                <a href="/my-reports"
+                   class="dashboard-btn">
+                    Track Issues →
+                </a>
+
+            </div>
+
+
+            <!-- SMART GROUPING -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    Smart Issue Grouping
+                </h3>
+
+                <p>
+                    Similar complaints from multiple students
+                    are combined into one Master Issue.
+                </p>
+
+                <div class="smart-status">
+                    ✓ Smart Detection Active
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- HOW IT WORKS -->
+
+    <div class="dashboard-section">
+
+        <h2>
+            How SmartCampus Works
+        </h2>
+
+        <div class="workflow-container">
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    01
+                </div>
+
+                <div>
+                    <h3>
+                        Report
+                    </h3>
+
+                    <p>
+                        Student reports a campus issue.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="workflow-arrow">
+                →
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    02
+                </div>
+
+                <div>
+                    <h3>
+                        Analyze
+                    </h3>
+
+                    <p>
+                        Category and priority are identified.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="workflow-arrow">
+                →
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    03
+                </div>
+
+                <div>
+                    <h3>
+                        Group
+                    </h3>
+
+                    <p>
+                        Similar reports become one Master Issue.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="workflow-arrow">
+                →
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    04
+                </div>
+
+                <div>
+                    <h3>
+                        Resolve
+                    </h3>
+
+                    <p>
+                        Admin assigns a team and resolves it.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="dashboard-info">
+
+        <div class="info-icon">
+            💡
+        </div>
+
+        <div>
+
+            <h3>
+                Why report campus issues?
+            </h3>
+
+            <p>
+                When multiple students report the same problem,
+                SmartCampus groups their complaints into one
+                Master Issue. This helps administrators manage
+                recurring problems efficiently.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <div class="back-link">
+
+        <a href="/">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="dashboard-footer">
+
+    <p>
+        © 2026 SmartCampus |
+        Smart Campus Issue Management System
+    </p>
+
+</footer>
+
+
+</body>
+</html>
