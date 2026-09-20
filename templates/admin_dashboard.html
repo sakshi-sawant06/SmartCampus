@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - SmartCampus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        SmartCampus
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            ← Home
+        </a>
+
+        <a href="/admin-dashboard">
+            Dashboard
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<div class="admin-container">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="admin-header">
+
+        <div>
+
+            <p class="admin-small-title">
+                ADMINISTRATION PANEL
+            </p>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage, assign and resolve campus issues
+                reported by students.
+            </p>
+
+        </div>
+
+        <div class="admin-header-icon">
+            🛠️
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <div class="admin-stats">
+
+
+        <!-- TOTAL -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📋
+            </div>
+
+            <div>
+
+                <span>
+                    Total Master Issues
+                </span>
+
+                <strong>
+                    {{ total }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- HIGH PRIORITY -->
+
+        <div class="stat-card high-stat">
+
+            <div class="stat-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <span>
+                    High Priority
+                </span>
+
+                <strong>
+                    {{ high }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🕐
+            </div>
+
+            <div>
+
+                <span>
+                    Pending
+                </span>
+
+                <strong>
+                    {{ pending }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔧
+            </div>
+
+            <div>
+
+                <span>
+                    In Progress
+                </span>
+
+                <strong>
+                    {{ progress }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+
+        <div class="stat-card resolved-stat">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    Resolved
+                </span>
+
+                <strong>
+                    {{ resolved }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MASTER ISSUES ================= -->
+
+    <div class="issues-section">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Master Issues
+                </h2>
+
+                <p>
+                    Similar student reports are automatically
+                    grouped into one Master Issue.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        {% if issues %}
+
+
+            {% for issue in issues %}
+
+
+            <!-- ================= ISSUE CARD ================= -->
+
+            <div class="admin-issue-card">
+
+
+                <!-- ISSUE HEADER -->
+
+                <div class="admin-issue-top">
+
+                    <div>
+
+                        <span class="master-label">
+                            MASTER ISSUE
+                        </span>
+
+                        <h2>
+                            #{{ issue.id }}
+                        </h2>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="admin-status
+                        {% if issue.status == 'Resolved' %}
+                            resolved
+                        {% elif issue.status == 'In Progress' %}
+                            progress
+                        {% elif issue.status == 'Assigned' %}
+                            assigned
+                        {% else %}
+                            pending
+                        {% endif %}
+                    ">
+
+                        {{ issue.status }}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ISSUE INFORMATION -->
+
+                <div class="admin-issue-details">
+
+
+                    <div class="admin-detail">
+
+                        <span>
+                            📍 Location
+                        </span>
+
+                        <strong>
+                            {{ issue.location }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="admin-detail">
+
+                        <span>
+                            🏷️ Category
+                        </span>
+
+                        <strong>
+                            {{ issue.category }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="admin-detail">
+
+                        <span>
+                            👥 Students Affected
+                        </span>
+
+                        <strong>
+                            {{ issue.reports_count }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="admin-detail">
+
+                        <span>
+                            ⚠️ Priority
+                        </span>
+
+                        <strong>
+                            {{ issue.priority }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="admin-description">
+
+                    <span>
+                        ISSUE DESCRIPTION
+                    </span>
+
+                    <p>
+                        {{ issue.description }}
+                    </p>
+
+                </div>
+
+
+
+                <!-- CURRENT TEAM -->
+
+                <div class="current-team">
+
+                    <span>
+                        👨‍🔧 Currently Assigned Team
+                    </span>
+
+                    <strong>
+
+                        {% if issue.assigned_team %}
+
+                            {{ issue.assigned_team }}
+
+                        {% else %}
+
+                            Not Assigned
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- ================= RESOLUTION IMAGE ================= -->
+
+                {% if issue.resolution_image %}
+
+                <div class="resolution-section">
+
+                    <div class="resolution-title">
+
+                        <span>
+                            ✅ RESOLUTION EVIDENCE
+                        </span>
+
+                        <small>
+                            Uploaded by Admin
+                        </small>
+
+                    </div>
+
+                    <p>
+                        This image shows the issue after
+                        the maintenance work was completed.
+                    </p>
+
+                    <img
+                        src="{{ url_for(
+                            'uploaded_file',
+                            filename=issue.resolution_image
+                        ) }}"
+                        alt="Resolution evidence"
+                        class="resolution-image">
+
+                </div>
+
+                {% endif %}
+
+
+
+                <!-- ================= UPDATE FORM ================= -->
+
+                <form
+                    method="POST"
+                    action="/update-issue/{{ issue.id }}"
+                    class="admin-update-form"
+                    enctype="multipart/form-data">
+
+
+                    <!-- TEAM -->
+
+                    <div class="admin-form-group">
+
+                        <label>
+                            Assign Team
+                        </label>
+
+                        <select
+                            name="assigned_team"
+                            required>
+
+                            <option value="">
+                                Select Team
+                            </option>
+
+
+                            <option
+                                value="Electrical Team"
+                                {% if issue.assigned_team == "Electrical Team" %}
+                                    selected
+                                {% endif %}>
+                                Electrical Team
+                            </option>
+
+
+                            <option
+                                value="Plumbing Team"
+                                {% if issue.assigned_team == "Plumbing Team" %}
+                                    selected
+                                {% endif %}>
+                                Plumbing Team
+                            </option>
+
+
+                            <option
+                                value="Cleaning Team"
+                                {% if issue.assigned_team == "Cleaning Team" %}
+                                    selected
+                                {% endif %}>
+                                Cleaning Team
+                            </option>
+
+
+                            <option
+                                value="Civil / Maintenance Team"
+                                {% if issue.assigned_team == "Civil / Maintenance Team" %}
+                                    selected
+                                {% endif %}>
+                                Civil / Maintenance Team
+                            </option>
+
+
+                            <option
+                                value="IT Support Team"
+                                {% if issue.assigned_team == "IT Support Team" %}
+                                    selected
+                                {% endif %}>
+                                IT Support Team
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- STATUS -->
+
+                    <div class="admin-form-group">
+
+                        <label>
+                            Update Status
+                        </label>
+
+                        <select
+                            name="status"
+                            required>
+
+                            <option
+                                value="Pending"
+                                {% if issue.status == "Pending" %}
+                                    selected
+                                {% endif %}>
+                                Pending
+                            </option>
+
+
+                            <option
+                                value="Assigned"
+                                {% if issue.status == "Assigned" %}
+                                    selected
+                                {% endif %}>
+                                Assigned
+                            </option>
+
+
+                            <option
+                                value="In Progress"
+                                {% if issue.status == "In Progress" %}
+                                    selected
+                                {% endif %}>
+                                In Progress
+                            </option>
+
+
+                            <option
+                                value="Resolved"
+                                {% if issue.status == "Resolved" %}
+                                    selected
+                                {% endif %}>
+                                Resolved
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- RESOLUTION IMAGE -->
+
+                    <div class="admin-form-group">
+
+                        <label>
+                            Resolution Image
+                        </label>
+
+                        <input
+                            type="file"
+                            name="resolution_image"
+                            accept="image/png,image/jpeg,image/jpg">
+
+                        <small class="resolution-help">
+                            Upload a photo after solving the issue.
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- UPDATE -->
+
+                    <button
+                        type="submit"
+                        class="update-btn">
+
+                        ✓ Update Issue
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <!-- ================= EMPTY ================= -->
+
+            <div class="admin-empty">
+
+                <div>
+                    📋
+                </div>
+
+                <h2>
+                    No Master Issues
+                </h2>
+
+                <p>
+                    No student complaints have been reported yet.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+    </div>
+
+
+
+    <!-- BACK -->
+
+    <div class="back-link">
+
+        <a href="/">
+            ← Back to Home
+        </a>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="dashboard-footer">
+
+    <p>
+        © 2026 SmartCampus |
+        Smart Campus Issue Management System
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
