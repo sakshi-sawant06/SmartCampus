@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Issue - SmartCampus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        SmartCampus
+    </div>
+
+    <div class="nav-links">
+        <a href="/student-dashboard">Dashboard</a>
+        <a href="/my-reports">My Reports</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+
+<!-- REPORT FORM -->
+<div class="form-container">
+
+    <div class="form-card report-card">
+
+        <div class="login-icon">📝</div>
+
+        <h1>Report a Campus Issue</h1>
+
+        <p>
+            Help improve your campus by reporting a problem.
+        </p>
+
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+
+            <!-- LOCATION -->
+            <label for="location">
+                Location
+            </label>
+
+            <select
+                id="location"
+                name="location"
+                required>
+
+                <option value="">
+                    Select Location
+                </option>
+
+                <option value="Lab 1">
+                    Lab 1
+                </option>
+
+                <option value="Lab 2">
+                    Lab 2
+                </option>
+
+                <option value="Lab 3">
+                    Lab 3
+                </option>
+
+                <option value="Library">
+                    Library
+                </option>
+
+                <option value="Canteen">
+                    Canteen
+                </option>
+
+                <option value="Block A">
+                    Block A
+                </option>
+
+                <option value="Block B">
+                    Block B
+                </option>
+
+                <option value="Hostel">
+                    Hostel
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <!-- DESCRIPTION -->
+            <label for="description">
+                Describe the Issue
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                rows="6"
+                placeholder="Example: Light is not working in Lab 2"
+                required></textarea>
+
+
+            <!-- IMAGE UPLOAD -->
+            <label for="image">
+                Upload Image
+                <span class="optional">
+                    (Optional)
+                </span>
+            </label>
+
+            <div class="image-upload">
+
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/png,image/jpeg,image/jpg">
+
+                <p>
+                    Upload a photo showing the problem.
+                </p>
+
+                <small>
+                    Supported: JPG, JPEG, PNG
+                </small>
+
+            </div>
+
+
+            <!-- SMART ANALYSIS -->
+            <div class="smart-info">
+
+                <strong>
+                    🤖 Smart Analysis
+                </strong>
+
+                <p>
+                    SmartCampus automatically analyzes your
+                    description to identify the issue category,
+                    priority and similar existing reports.
+                </p>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <button
+                type="submit"
+                class="form-btn">
+
+                Submit Issue
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<div class="back-link">
+    <a href="/student-dashboard">← Back to Dashboard</a>
+</div>
