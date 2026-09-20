@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login - SmartCampus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        SmartCampus
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            ← Home
+        </a>
+
+        <a href="/student-login">
+            Student Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ADMIN LOGIN -->
+
+<div class="form-container">
+
+    <div class="form-card">
+
+        <div class="login-icon">
+            🔐
+        </div>
+
+        <h1>
+            Admin Login
+        </h1>
+
+        <p>
+            Login to manage campus issues.
+        </p>
+
+
+        {% if error %}
+
+        <div class="error-message">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter admin username"
+                required>
+
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter admin password"
+                required>
+
+
+            <button
+                type="submit"
+                class="form-btn">
+
+                Login as Admin
+
+            </button>
+
+        </form>
+
+
+        <!-- BACK BUTTON -->
+
+        <div class="back-link">
+
+            <a href="/">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
